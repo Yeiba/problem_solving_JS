@@ -1,0 +1,11 @@
+{
+  "name": "-1.0-two-sum",
+  "version": "1.0.0",
+  "description": "Given an array of integers `nums` and an integer `target`, return *indices of the two numbers such that they add up to `target`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
