@@ -16,6 +16,7 @@ const buildAdjList = (edges, n = edges.length) => {
     const adjList = Array.from({ length: n }, () => [])
     for (let i = 0; i < adjList.length; i++) {
         adjList[i].push(...getEdgs(i, edges[i]))
+
     }
     return adjList
 }
@@ -31,9 +32,12 @@ const dfs = (node, adjList, visited) => {
 }
 const findCircleNum = (isConnected) => {
     const adjList = buildAdjList(isConnected);
-    const visited = {}
+    console.log(adjList)
+    const visited = {};
     let provinces = 0
+    // traverse through neighbors 
     for (let vertex = 0; vertex < adjList.length; vertex++) {
+        // check if we visited this vertex
         if (!visited[vertex]) {
             provinces++;
             dfs(vertex, adjList, visited);
@@ -44,3 +48,4 @@ const findCircleNum = (isConnected) => {
 
 
 console.log(findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]]))
+console.log(findCircleNum([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
