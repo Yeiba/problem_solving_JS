@@ -1,6 +1,5 @@
 # Solution Explain
 
-
 The code is intended to check if a string of parentheses is valid. A string is considered valid if every opening parenthesis has a corresponding closing parenthesis in the correct order, and all parentheses are correctly nested. Here’s an explanation of the code along with debugging:
 
 ### Explanation:
@@ -103,6 +102,82 @@ console.log(isValid('({])')); // output false
 ```
 
 ### Explanation of the Debugged Code:
+
+Certainly! The lines:
+
+```javascript
+let open = stack[stack.length - 2];
+let closed = stack[stack.length - 1];
+```
+
+are intended to extract the two most recent elements from the stack to check if they form a valid pair of parentheses. However, in the original code, this approach has issues. Here’s a detailed explanation of what these lines are trying to achieve and why it might not work as expected:
+
+### Explanation of the Original Lines
+
+1. **Accessing Stack Elements:**
+
+   - `stack[stack.length - 1]` gives you the most recent (top) element in the stack.
+   - `stack[stack.length - 2]` gives you the second most recent element in the stack, which is just below the top element.
+2. **Checking for Matching Parentheses:**
+
+   - The idea is to see if the top two elements of the stack (i.e., `open` and `closed`) form a valid pair of parentheses.
+   - For example, if `stack` contains `['(', '{']`, then `open` would be `'('` and `closed` would be `'{'`.
+3. **Combining `open` and `closed`:**
+
+   - `let petParens = open + closed;` combines these two characters into a string (e.g., `'({')` or `'(}'`).
+4. **Validation Check:**
+
+   - `if (parens.includes(petParens))` checks if this combined string (pair) is present in the `parens` string, which is a problematic approach because it doesn’t correctly match valid parentheses pairs.
+
+### Issues with This Approach
+
+1. **Incorrect Matching:**
+
+   - The `parens` string is not an effective way to check valid pairs. For example, `'({')` is not a valid pair, but the original code doesn’t handle this properly.
+2. **Check After Every Push:**
+
+   - The code checks for matching pairs immediately after each character is pushed onto the stack. This approach can fail for cases where parentheses are nested or not yet fully matched.
+
+### Debugged Approach
+
+In the debugged version, the use of a `matchingParentheses` object allows more precise checking:
+
+```javascript
+const matchingParentheses = {
+    ')': '(',
+    ']': '[',
+    '}': '{'
+};
+```
+
+Here's how it improves the code:
+
+1. **Mapping Closures to Openers:**
+
+   - `matchingParentheses` provides a direct way to map each closing parenthesis to its corresponding opening parenthesis.
+2. **Stack Operations:**
+
+   - When encountering a closing parenthesis, the code checks if the top of the stack matches the corresponding opening parenthesis using this mapping.
+3. **Efficient Checking:**
+
+   - The debugged code uses `stack.pop()` to remove the top of the stack and compares it to the expected opening parenthesis. If they don’t match, it’s an invalid configuration.
+
+### Example
+
+To illustrate with an example:
+
+1. **Input: `({[()]})`**
+
+   - **Push `(`:** Stack: `['(']`
+   - **Push `{`**: Stack: `['(', '{']`
+   - **Push `[`**: Stack: `['(', '{', '[']`
+   - **Push `(`**: Stack: `['(', '{', '[', '(']`
+   - **Push `)`**: Stack: `['(', '{', '[']` (matches `(`)
+   - **Push `]`**: Stack: `['(', '{']` (matches `[`)
+   - **Push `}`**: Stack: `['(']` (matches `{`)
+   - **Final Check:** Stack is `['(']`, which is an unmatched opening parenthesis.
+
+Using this approach ensures correct handling of all cases, including nested and mixed pairs of parentheses.
 
 1. **`matchingParentheses` Object:**
 
