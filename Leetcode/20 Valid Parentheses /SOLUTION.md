@@ -191,3 +191,102 @@ Using this approach ensures correct handling of all cases, including nested and 
    - If the stack is empty after processing the entire string, all parentheses were matched correctly.
 
 This approach ensures that each parenthesis is properly matched and nested, handling all edge cases correctly.
+
+output of isValid_one  :
+
+```
+// console.log(isValid_one('()')) // output true
+// [ '(' ]
+// undefined(
+// [ '(', ')' ]
+// ()
+// true
+// console.log(isValid_one('()[]{}')) // output true
+// [ '(' ]
+// undefined(
+// [ '(', ')' ]
+// ()
+// [ '[' ]
+// undefined[
+// [ '[', ']' ]
+// []
+// [ '{' ]
+// undefined{
+// [ '{', '}' ]
+// {}
+// true
+// console.log(isValid_one('(){}][]}')) // output false
+// [ '(' ]
+// undefined(
+// [ '(', ')' ]
+// ()
+// [ '{' ]
+// undefined{
+// [ '{', '}' ]
+// {}
+// [ ']' ]
+// undefined]
+// [ ']', '[' ]
+// ][
+// [ ']', '[', ']' ]
+// []
+// [ ']', '}' ]
+// ]}
+// false
+// console.log(isValid_one('({[]})')) // output true
+// [ '(' ]
+// undefined(
+// [ '(', '{' ]
+// ({
+// [ '(', '{', '[' ]
+// {[
+// [ '(', '{', '[', ']' ]
+// []
+// [ '(', '{', '}' ]
+// {}
+// [ '(', ')' ]
+// ()
+// true
+// console.log(isValid_one('(]')) // output false
+// [ '(' ]
+// undefined(
+// [ '(', ']' ]
+// (]
+// false
+console.log(isValid_one('({])')) // output false
+// [ '(' ]
+// undefined(
+// [ '(', '{' ]
+// ({
+// [ '(', '{', ']' ]
+// {]
+// [ '(', '{', ']', ')' ]
+// ])
+// false
+```
+
+output of isValid_two :
+
+```
+// console.log(isValid_two('({[]})')) // output true
+// "init" ""
+// "cur" ""
+// "stack[char]" "("
+// "end of loop" "("
+// "cur" "("
+// "stack[char]" "(,{"
+// "end of loop" "(,{"
+// "cur" "(,{"
+// "stack[char]" "(,{,["
+// "end of loop" "(,{,["
+// "cur" "(,{,["
+// "current state" "false"
+// "end of loop" "(,{"
+// "cur" "(,{"
+// "current state" "false"
+// "end of loop" "("
+// "cur" "("
+// "current state" "true"
+// "end of loop" ""
+// true
+```
