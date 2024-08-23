@@ -195,74 +195,26 @@ This approach ensures that each parenthesis is properly matched and nested, hand
 output of isValid_one  :
 
 ```
-// console.log(isValid_one('()')) // output true
-// [ '(' ]
-// undefined(
-// [ '(', ')' ]
-// ()
-// true
-// console.log(isValid_one('()[]{}')) // output true
-// [ '(' ]
-// undefined(
-// [ '(', ')' ]
-// ()
-// [ '[' ]
-// undefined[
-// [ '[', ']' ]
-// []
-// [ '{' ]
-// undefined{
-// [ '{', '}' ]
-// {}
-// true
-// console.log(isValid_one('(){}][]}')) // output false
-// [ '(' ]
-// undefined(
-// [ '(', ')' ]
-// ()
-// [ '{' ]
-// undefined{
-// [ '{', '}' ]
-// {}
-// [ ']' ]
-// undefined]
-// [ ']', '[' ]
-// ][
-// [ ']', '[', ']' ]
-// []
-// [ ']', '}' ]
-// ]}
-// false
 // console.log(isValid_one('({[]})')) // output true
 // [ '(' ]
 // undefined(
+// "end of loop" "false"
 // [ '(', '{' ]
 // ({
+// "end of loop" "false"
 // [ '(', '{', '[' ]
 // {[
+// "end of loop" "false"
 // [ '(', '{', '[', ']' ]
 // []
+// "end of loop" "true"
 // [ '(', '{', '}' ]
 // {}
+// "end of loop" "true"
 // [ '(', ')' ]
 // ()
+// "end of loop" "true"
 // true
-// console.log(isValid_one('(]')) // output false
-// [ '(' ]
-// undefined(
-// [ '(', ']' ]
-// (]
-// false
-console.log(isValid_one('({])')) // output false
-// [ '(' ]
-// undefined(
-// [ '(', '{' ]
-// ({
-// [ '(', '{', ']' ]
-// {]
-// [ '(', '{', ']', ')' ]
-// ])
-// false
 ```
 
 output of isValid_two :

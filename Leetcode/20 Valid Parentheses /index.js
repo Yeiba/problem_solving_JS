@@ -19,6 +19,7 @@ var isValid_one = function (s) {
             stack.pop()
             stack.pop()
         }
+        console.log(`"end of loop" "${parens.includes(petParens) ? true : false}"`)
 
     }
     return stack.length === 0
@@ -60,7 +61,7 @@ var isValid_two = function (s) {
 // console.log(isValid_one('()')) // output true
 // console.log(isValid_one('()[]{}')) // output true
 // console.log(isValid_one('(){}][]}')) // output false
-// console.log(isValid_one('({[]})') // output true
+// console.log(isValid_one('({[]})')) // output true
 // console.log(isValid_one('(]')) // output false
 // console.log(isValid_one('({])')) // output false
 
